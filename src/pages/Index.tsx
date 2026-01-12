@@ -9,12 +9,12 @@ import {
 } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import {
-  ArrowUpCircle,
-  ArrowDownCircle,
+  CircleArrowUp,
+  CircleArrowDown,
   Wallet,
   PiggyBank,
-  AlertTriangle,
-  Edit,
+  TriangleAlert,
+  Pencil,
 } from 'lucide-react'
 import {
   ChartContainer,
@@ -24,16 +24,7 @@ import {
   ChartLegendContent,
   type ChartConfig,
 } from '@/components/ui/chart'
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  XAxis,
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-} from 'recharts'
+import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -82,17 +73,6 @@ export default function Dashboard() {
   let greeting = 'Bom dia'
   if (hour >= 12) greeting = 'Boa tarde'
   if (hour >= 18) greeting = 'Boa noite'
-
-  // Prepare Chart Data: Expenses by Category
-  const expenseByCategory = categories
-    .filter((c) => c.type === 'expense')
-    .map((cat) => {
-      const amount = currentMonthTransactions
-        .filter((t) => t.categoryId === cat.id)
-        .reduce((acc, curr) => acc + curr.amount, 0)
-      return { name: cat.name, value: amount, color: cat.color || '#ccc' }
-    })
-    .filter((item) => item.value > 0)
 
   // Prepare Chart Data: Monthly Evolution (Last 6 months)
   // Simplified for this example, usually would need complex date grouping
@@ -176,7 +156,7 @@ export default function Dashboard() {
             <CardTitle className="text-sm font-medium">
               Total Receitas
             </CardTitle>
-            <ArrowUpCircle className="h-4 w-4 text-emerald-500" />
+            <CircleArrowUp className="h-4 w-4 text-emerald-500" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-emerald-600">
@@ -192,7 +172,7 @@ export default function Dashboard() {
             <CardTitle className="text-sm font-medium">
               Total Despesas
             </CardTitle>
-            <ArrowDownCircle className="h-4 w-4 text-rose-500" />
+            <CircleArrowDown className="h-4 w-4 text-rose-500" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-rose-600">
@@ -274,7 +254,7 @@ export default function Dashboard() {
                       key={alert.id}
                       className="flex items-center space-x-4 border p-3 rounded-lg bg-yellow-50 dark:bg-yellow-900/20"
                     >
-                      <AlertTriangle
+                      <TriangleAlert
                         className={cn(
                           'h-5 w-5',
                           alert.percentage >= 100
@@ -347,9 +327,9 @@ export default function Dashboard() {
                           )}
                         >
                           {t.type === 'income' ? (
-                            <ArrowUpCircle size={20} />
+                            <CircleArrowUp size={20} />
                           ) : (
-                            <ArrowDownCircle size={20} />
+                            <CircleArrowDown size={20} />
                           )}
                         </div>
                         <div>
@@ -373,7 +353,7 @@ export default function Dashboard() {
                           {formatCurrency(t.amount)}
                         </span>
                         <Button variant="ghost" size="icon">
-                          <Edit className="h-4 w-4 text-muted-foreground" />
+                          <Pencil className="h-4 w-4 text-muted-foreground" />
                         </Button>
                       </div>
                     </div>

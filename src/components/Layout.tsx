@@ -19,8 +19,8 @@ import {
   TrendingDown,
   Tags,
   Target,
-  CalendarDollarSign,
-  FileBarChart,
+  Calendar,
+  ChartBar,
   Settings,
   Plus,
   Eye,
@@ -59,8 +59,8 @@ export default function Layout() {
     { title: 'Despesas', url: '/despesas', icon: TrendingDown },
     { title: 'Categorias', url: '/categorias', icon: Tags },
     { title: 'Metas', url: '/metas', icon: Target },
-    { title: 'Orçamento', url: '/orcamento', icon: CalendarDollarSign },
-    { title: 'Relatórios', url: '/relatorios', icon: FileBarChart },
+    { title: 'Orçamento', url: '/orcamento', icon: Calendar },
+    { title: 'Relatórios', url: '/relatorios', icon: ChartBar },
     { title: 'Configurações', url: '/configuracoes', icon: Settings },
   ]
 
